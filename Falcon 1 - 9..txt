@@ -1,0 +1,427 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+void atividade1() {
+    printf(" Você escolheu a Atividade 1.\n");
+    printf(" Resistências Série-Paralelo \n");
+    // Função para calcular a resistência total em série
+	float calcularResistenciaSerie(float r1, float r2, float r3) {
+    return r1 + r2 + r3;
+}
+
+// Função para calcular a resistência total em paralelo
+	float calcularResistenciaParalelo(float r1, float r2, float r3) {
+    return 1 / ((1 / r1) + (1 / r2) + (1 / r3));
+}
+
+	float r1, r2, r3, voltagem, corrente;
+
+	printf(" Digite o valor da primeira resistencia (R1):  ");
+    scanf(" %f", &r1);
+
+    printf(" Digite o valor da segunda resistencia (R2): ");
+    scanf("%f", &r2);
+
+    printf(" Digite o valor da terceira resistencia (R3): ");
+    scanf("%f", &r3);
+
+    printf(" Digite a voltagem (V): ");
+    scanf("%f", &voltagem);
+
+    printf(" Digite a corrente (I): ");
+    scanf("%f", &corrente);
+	
+
+    float resistenciaSerie, resistenciaParalelo;
+
+    // Verifica se algum valor de resistência é zero para calcular usando a lei de Ohm
+    if (r1 == 0 || r2 == 0 || r3 == 0) {
+        resistenciaSerie = voltagem / corrente;
+        resistenciaParalelo = voltagem / corrente;
+    } else {
+        resistenciaSerie = calcularResistenciaSerie(r1, r2, r3);
+        resistenciaParalelo = calcularResistenciaParalelo(r1, r2, r3);
+    }
+	
+    printf(" A resistencia total em serie é de : %.2f ohms\n", resistenciaSerie);
+    printf(" A resistencia total em paralelo é de : %.2f ohms\n", resistenciaParalelo);
+    printf("\n");
+    printf("\n");
+    printf("\n");
+
+
+   return 0;
+}
+
+	
+
+void atividade2() {
+    printf(" Você escolheu a Atividade 2.\n");
+	printf(" Resistências Série-Paralelo \n");
+    
+	float resistenciaSerie(float resistencias[], int n) {
+    if (n == 0) return 0;
+    return resistencias[n - 1] + resistenciaSerie(resistencias, n - 1);
+}
+
+float resistenciaParalelo(float resistencias[], int n) {
+    if (n == 0) return 0;
+    return 1 / resistencias[n - 1] + resistenciaParalelo(resistencias, n - 1);
+}
+
+	int n;
+    printf(" Digite o número de resistências que deseja calcular: \n");
+    scanf("%d", &n);
+
+    float resistencias[n];
+
+    // Função para inserir os valores das resistências
+    void inserirResistencias(int index) {
+        if (index == n) return;
+        printf(" Digite o valor da resistência %d: ", index + 1);
+        scanf("%f", &resistencias[index]);
+        inserirResistencias(index + 1);
+    }
+
+    inserirResistencias(0); // Chamada da função para inserir os valores das resistências
+
+    float resistencia_total_serie = resistenciaSerie(resistencias, n);
+    float resistencia_total_paralelo = 1 / resistenciaParalelo(resistencias, n);
+
+    printf(" A resistência total em série é: %.2f Ohms\n", resistencia_total_serie);
+    printf(" A resistência total em paralelo é: %.2f Ohms\n", resistencia_total_paralelo);
+	printf("\n");
+    printf("\n");
+    printf("\n");
+
+    return 0;
+}
+	
+	
+void atividade3() {
+    printf(" Você escolheu a Atividade 3.\n");
+    printf(" Calcule sua média Aritimética sobre 4 valores\n");
+    
+    float nota1, nota2, nota3, nota4;
+    float media;
+
+    // Solicitando ao usuário que insira as notas
+    printf(" Digite a nota 1: ");
+    scanf("%f", &nota1);
+
+    printf(" Digite a nota 2: ");
+    scanf("%f", &nota2);
+
+    printf(" Digite a nota 3: ");
+    scanf("%f", &nota3);
+
+    printf(" Digite a nota 4: ");
+    scanf("%f", &nota4);
+
+    // Calculando a média aritmética
+    media = (nota1 + nota2 + nota3 + nota4) / 4;
+
+    // Verificando se o aluno foi aprovado ou reprovado
+    if (media >= 7.0) {
+        printf(" Parabéns! Você foi aprovado com média %.2f\n", media);
+    } else {
+        printf(" Infelizmente, você foi reprovado com média %.2f\n", media);
+	printf("\n");
+    printf("\n");
+    printf("\n");
+    }
+
+    return 0;
+	printf("\n");
+    printf("\n");
+    printf("\n");
+
+			 }
+	
+
+void atividade4() {
+    printf(" Você escolheu a Atividade 4.\n");
+   	printf (" Calcule a média aritimética de x números:\n");
+     {
+    int n, i;
+    float nota, soma = 0;
+    float media;
+
+    printf(" Quantas notas deseja calcular? \n");
+    scanf(" %d", &n);
+
+    // Loop para receber as notas e calcular a soma
+    for(i = 1; i <= n; i++) {
+        printf(" Digite a nota %d: ", i);
+        scanf("%f", &nota);
+        soma += nota;
+    }
+
+    // Calculando a média
+    media = soma / n;
+
+    // Verificando e exibindo o resultado
+    printf(" Média: %.2f\n", media);
+    if (media >= 7.0) {
+        printf(" Aluno APROVADO!\n");
+    } else {
+        printf(" Aluno REPROVADO!\n");
+    }
+
+    return 0;
+}
+}
+
+void atividade5() {
+    printf(" Você escolheu a Atividade 5.\n");
+    printf(" Saiba a autonomia de seu veículo com diferes opções de combustível \n");
+    
+    {
+    float distancia, consumo, preco_etanol, preco_gasolina, preco_diesel, tanque;
+    float total_gasto_etanol, total_gasto_gasolina, total_gasto_diesel;
+    float consumo_etanol, consumo_gasolina, consumo_diesel;
+    int tanques_etanol, tanques_gasolina, tanques_diesel;
+
+    // Informações do usuário
+    printf(" Informe a distância percorrida (em Km): ");
+    scanf("%f", &distancia);
+
+    printf(" Informe o consumo médio do veículo (em Km/l): ");
+    scanf("%f", &consumo);
+
+    printf(" Informe o preço do etanol por litro (R$): ");
+    scanf("%f", &preco_etanol);
+
+    printf(" Informe o preço da gasolina por litro (R$): ");
+    scanf("%f", &preco_gasolina);
+
+    printf(" Informe o preço do diesel por litro (R$): ");
+    scanf("%f", &preco_diesel);
+
+    printf(" Informe o tamanho do tanque de combustível (em litros): ");
+    scanf("%f", &tanque);
+
+    // Cálculos para o etanol
+    total_gasto_etanol = (distancia / consumo) * preco_etanol;
+    consumo_etanol = total_gasto_etanol / preco_etanol;
+    tanques_etanol = total_gasto_etanol / (tanque * preco_etanol);
+
+    // Cálculos para a gasolina
+    total_gasto_gasolina = (distancia / consumo) * preco_gasolina;
+    consumo_gasolina = total_gasto_gasolina / preco_gasolina;
+    tanques_gasolina = total_gasto_gasolina / (tanque * preco_gasolina);
+
+    // Cálculos para o diesel
+    total_gasto_diesel = (distancia / consumo) * preco_diesel;
+    consumo_diesel = total_gasto_diesel / preco_diesel;
+    tanques_diesel = total_gasto_diesel / (tanque * preco_diesel);
+
+    // Exibindo os resultados
+    printf("\n Resultados para o etanol:\n");
+    printf(" Valor total gasto: R$%.2f\n", total_gasto_etanol);
+    printf(" Consumo (litros): %.2f\n", consumo_etanol);
+    printf(" Tanques utilizados: %d\n", tanques_etanol);
+
+    printf("\n Resultados para a gasolina:\n");
+    printf(" Valor total gasto: R$%.2f\n", total_gasto_gasolina);
+    printf(" Consumo (litros): %.2f\n", consumo_gasolina);
+    printf(" Tanques utilizados: %d\n", tanques_gasolina);
+
+    printf("\n Resultados para o diesel:\n");
+    printf(" Valor total gasto: R$%.2f\n", total_gasto_diesel);
+    printf(" Consumo (litros): %.2f\n", consumo_diesel);
+    printf(" Tanques utilizados: %d\n", tanques_diesel);
+
+    return 0;
+}
+    
+    
+}
+
+void atividade6() {
+    printf(" Você escolheu a Atividade 6.\n");
+    printf(" Realize a conversão de um valor para escala de Celcius, Farenheit ou Kelvin \n");
+    
+    {
+	setlocale(LC_ALL,"Portuguese");
+    float temperatura;
+    char escolha;
+
+    printf(" Digite a temperatura: ");
+    scanf("%f", &temperatura);
+
+    printf(" Escolha a escala de temperatura (C/c para Celsius, F/f para Fahrenheit, K/k para Kelvin): ");
+    scanf(" %c", &escolha);
+
+    switch (escolha) {
+        case 'C':
+        case 'c':
+            printf("%.2f Celsius equivale a %.2f Fahrenheit\n", temperatura, temperatura * 1.8 + 32);
+            printf("%.2f Celsius equivale a %.2f Kelvin\n", temperatura, temperatura + 273.15);
+            break;
+        case 'F':
+        case 'f':
+            printf("%.2f Fahrenheit equivale a %.2f Celsius\n", temperatura, (temperatura - 32) / 1.8);
+            printf("%.2f Fahrenheit equivale a %.2f Kelvin\n", temperatura, (temperatura - 32) / 1.8 + 273.15);
+            break;
+        case 'K':
+        case 'k':
+            printf("%.2f Kelvin equivale a %.2f Celsius\n", temperatura, temperatura - 273.15);
+            printf("%.2f Kelvin equivale a %.2f Fahrenheit\n", temperatura, (temperatura - 273.15) * 1.8 + 32);
+            break;
+        default:
+            printf("Escolha inválida!\n");
+    }
+
+    return 0;
+}
+    
+}
+
+void atividade7() {
+    printf(" Você escolheu a Atividade 7.\n");
+    printf(" Calcule seu Indice de Massa Corporal \n");
+ 
+    {
+	setlocale (LC_ALL,"Portuguese");
+    float peso, altura, imc;
+
+    printf(" Digite seu peso (em kg): ");
+    scanf("%f", &peso);
+
+    printf(" Digite sua altura (em metros): ");
+    scanf("%f", &altura);
+
+    imc = peso / (altura * altura);
+
+    printf(" Seu IMC é: %.2f\n", imc);
+    if (imc < 18.5) {
+        printf(" Condição: Abaixo do peso\n");
+    } else if (imc >= 18.5 && imc <= 24.9) {
+        printf(" Condição: Peso ideal (parabéns, você está saudável.)\n");
+    } else if (imc >= 25.0 && imc <= 29.9) {
+        printf(" Condição: Levemente acima do peso\n");
+    } else if (imc >= 30.0 && imc <= 34.9) {
+        printf(" Condição: Obesidade grau I\n");
+    } else if (imc >= 35.0 && imc <= 39.9) {
+        printf(" Condição: Obesidade grau II (severa)\n");
+    } else {
+        printf(" Condição: Obesidade grau III (mórbida)\n");
+    }
+
+    return 0;
+}
+}
+
+void atividade8() {
+    printf(" Você escolheu a Atividade 8.\n");
+	printf(" Saiba o valor final de acordo com a forma de pagamento. \n");
+	printf("\n");
+    {
+
+	setlocale (LC_ALL,"Portuguese");
+    float valorProduto, valorFinal;
+    int codigoPagamento;
+
+    printf(" Digite o valor do produto: R$ ");
+    scanf("%f", &valorProduto);
+
+    printf(" Escolha a forma de pagamento: \n 1 - À vista em dinheiro ou Pix \n 2 - À vista no cartão de crédito\n 3 - Parcelado no cartão em duas vezes\n 4 - Parcelado no cartão em três vezes ou mais): ");
+    scanf("%d", &codigoPagamento);
+
+    switch (codigoPagamento) {
+        case 1:
+            valorFinal = valorProduto * 0.85; // 15% de desconto
+            break;
+        case 2:
+            valorFinal = valorProduto * 0.90; // 10% de desconto
+            break;
+        case 3:
+            valorFinal = valorProduto; // Preço normal sem juros
+            break;
+        case 4:
+            valorFinal = valorProduto * 1.10; // Preço normal mais 10% de juros
+            break;
+        default:
+            printf(" Código de pagamento inválido!\n");
+            return 1;
+    }
+
+    printf(" Valor final a ser pago: R$ %.2f\n", valorFinal);
+
+    return 0;
+}
+    
+}
+
+void atividade9() {
+    printf(" Você escolheu a Atividade 9.\n");
+    // Coloque aqui o código da Atividade 9
+}
+
+int main() {
+
+	setlocale(LC_ALL, "Portuguese");
+	
+
+
+    int escolha;
+
+    do {
+		printf("\n");
+        printf("		===== Menu de Atividades =====\n");
+        printf("\n");
+		printf("	Digite o número da atividade desejada: \n");
+		printf("\n");
+        printf("	Atividade 1 - Resistências Série - Paralelo\n");
+        printf("	Atividade 2 - Circuito Série - Paralelo\n");
+        printf("	Atividade 3 - Média Aritimética\n");
+        printf("	Atividade 4 - X Médias Aritiméticas\n");
+        printf("	Atividade 5 - Kilometro / L \n");
+        printf("	Atividade 6 - Conversão de Temperatura\n");
+        printf("	Atividade 7 - Índice de Massa Corporal\n");
+        printf("	Atividade 8 - Forma de Pagamento\n");
+        printf("	Atividade 9 - comparativo entre C e C#\n");
+        printf("	Digite 0 Para Sair\n");
+        scanf(" 	%d", & 	escolha);
+
+        switch (escolha) {
+            case 1:
+                atividade1();
+                break;
+            case 2:
+                atividade2();
+                break;
+            case 3:
+                atividade3();
+                break;
+            case 4:
+                atividade4();
+                break;
+            case 5:
+                atividade5();
+                break;
+            case 6:
+                atividade6();
+                break;
+            case 7:
+                atividade7();
+                break;
+            case 8:
+                atividade8();
+                break;
+            case 9:
+                atividade9();
+                break;
+            case 0:
+                printf("Saindo...\n");
+                break;
+            default:
+                printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+                break;
+        }
+    } while (escolha != 0);
+
+    return 0;
+}
